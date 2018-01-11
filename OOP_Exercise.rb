@@ -18,20 +18,28 @@ end
 class Deck
 
   def initialize(input_options)
-    @cards = []
+    cards = []
     input_options.each do |option|
-      @cards << option
+      cards << option
     end
-    @cards.map! do |card| {question: card[0], answer: card[1]}
+    cards.map! do |card| {question: card[0], answer: card[1]}
+    end
+    @deck = []
+    cards.each do |card|
+      @deck << Card.new(card)
     end
   end
 
   def draw_card
-    
+    card = @deck[0]
+    p card
+    p @deck[0]
+    # @deck.delete_at[0]
+    # return card
   end
 
   def remaining_cards
-
+    @deck.length
   end
 
 end
@@ -46,6 +54,11 @@ deck = Deck.new(trivia_data) # deck is an instance of the Deck class
 
 p deck
 
+p deck.remaining_cards
+
+p deck.draw_card
+
+p deck
 # while deck.remaining_cards > 0
 #   card = deck.draw_card # card is an instance of the Card class
 #   puts card.question
